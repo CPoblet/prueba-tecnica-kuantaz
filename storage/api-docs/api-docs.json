@@ -1,0 +1,264 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation",
+        "description": "API Documentation for your application",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/filtros": {
+            "get": {
+                "tags": [
+                    "Beneficios"
+                ],
+                "summary": "Obtener una lista de filtros",
+                "operationId": "20f7ac43d59b4f5361293ef30897d487",
+                "responses": {
+                    "200": {
+                        "description": "Lista de beneficios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id_programa": {
+                                                "description": "ID del programa",
+                                                "type": "integer"
+                                            },
+                                            "tramite": {
+                                                "description": "Trámite del beneficio",
+                                                "type": "string"
+                                            },
+                                            "min": {
+                                                "description": "Monto mínimo del beneficio",
+                                                "type": "integer"
+                                            },
+                                            "max": {
+                                                "description": "Monto máximo del beneficio",
+                                                "type": "integer"
+                                            },
+                                            "ficha_id": {
+                                                "description": "ID de la ficha del beneficio",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/beneficios-validos": {
+            "get": {
+                "tags": [
+                    "Beneficios"
+                ],
+                "summary": "Obtener beneficios válidos",
+                "operationId": "e5dd6d4bd9e104d46194b99646d8b2b7",
+                "responses": {
+                    "200": {
+                        "description": "Beneficios válidos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "year": {
+                                                "description": "Año de los beneficios",
+                                                "type": "string"
+                                            },
+                                            "num": {
+                                                "description": "Número de beneficios válidos",
+                                                "type": "integer"
+                                            },
+                                            "beneficios": {
+                                                "description": "Lista de beneficios válidos",
+                                                "type": "array",
+                                                "items": {
+                                                    "properties": {
+                                                        "id_programa": {
+                                                            "description": "ID del programa",
+                                                            "type": "integer"
+                                                        },
+                                                        "monto": {
+                                                            "description": "Monto del beneficio",
+                                                            "type": "integer"
+                                                        },
+                                                        "fecha_recepcion": {
+                                                            "description": "Fecha de recepción del beneficio",
+                                                            "type": "string",
+                                                            "format": "date"
+                                                        },
+                                                        "fecha": {
+                                                            "description": "Fecha del beneficio",
+                                                            "type": "string",
+                                                            "format": "date"
+                                                        },
+                                                        "ano": {
+                                                            "description": "Año del beneficio",
+                                                            "type": "string"
+                                                        },
+                                                        "view": {
+                                                            "description": "Vista del beneficio",
+                                                            "type": "boolean"
+                                                        },
+                                                        "ficha": {
+                                                            "description": "Ficha del beneficio",
+                                                            "properties": {
+                                                                "id": {
+                                                                    "description": "ID de la ficha",
+                                                                    "type": "integer"
+                                                                },
+                                                                "nombre": {
+                                                                    "description": "Nombre de la ficha",
+                                                                    "type": "string"
+                                                                },
+                                                                "id_programa": {
+                                                                    "description": "ID del programa de la ficha",
+                                                                    "type": "integer"
+                                                                },
+                                                                "url": {
+                                                                    "description": "URL de la ficha",
+                                                                    "type": "string"
+                                                                },
+                                                                "categoria": {
+                                                                    "description": "Categoría de la ficha",
+                                                                    "type": "string"
+                                                                },
+                                                                "descripcion": {
+                                                                    "description": "Descripción de la ficha",
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fichas": {
+            "get": {
+                "tags": [
+                    "Fichas"
+                ],
+                "summary": "Obtener una lista de fichas",
+                "operationId": "fc8a58218a8935623ed017a6a135136b",
+                "responses": {
+                    "200": {
+                        "description": "Lista de fichas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID de la ficha",
+                                                "type": "integer"
+                                            },
+                                            "nombre": {
+                                                "description": "Nombre de la ficha",
+                                                "type": "string"
+                                            },
+                                            "id_programa": {
+                                                "description": "ID del programa relacionado",
+                                                "type": "integer"
+                                            },
+                                            "url": {
+                                                "description": "URL del documento",
+                                                "type": "string"
+                                            },
+                                            "categoria": {
+                                                "description": "Categoría de la ficha",
+                                                "type": "string"
+                                            },
+                                            "descripcion": {
+                                                "description": "Descripción de la ficha",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/beneficios/{user_id}": {
+            "get": {
+                "tags": [
+                    "Beneficios"
+                ],
+                "summary": "Obtener los beneficios de un usuario",
+                "operationId": "c70063c1634e06639e6d6d38cf2d5a61",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Beneficios del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "ID del beneficio",
+                                                "type": "integer"
+                                            },
+                                            "monto": {
+                                                "description": "Monto del beneficio",
+                                                "type": "integer"
+                                            },
+                                            "fecha_recepcion": {
+                                                "description": "Fecha de recepción del beneficio",
+                                                "type": "string",
+                                                "format": "date"
+                                            },
+                                            "fecha": {
+                                                "description": "Fecha del beneficio",
+                                                "type": "string",
+                                                "format": "date"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado"
+                    }
+                }
+            }
+        }
+    }
+}

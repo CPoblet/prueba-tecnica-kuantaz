@@ -64,7 +64,39 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the benefits.
+     * @OA\Get(
+     *     path="/api/beneficios/{user_id}",
+     *     summary="Obtener los beneficios de un usuario",
+     *     tags={"Beneficios"},
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="path",
+     *         required=true,
+     *         description="ID del usuario",
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Beneficios del usuario",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer", description="ID del beneficio"),
+     *                 @OA\Property(property="monto", type="integer", description="Monto del beneficio"),
+     *                 @OA\Property(property="fecha_recepcion", type="string", format="date", description="Fecha de recepción del beneficio"),
+     *                 @OA\Property(property="fecha", type="string", format="date", description="Fecha del beneficio"),
+     *             ),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Usuario no encontrado",
+     *     ),
+     * )
      */
     public function benefits($user_id)
     {

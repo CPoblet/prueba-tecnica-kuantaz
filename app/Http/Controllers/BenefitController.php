@@ -11,8 +11,27 @@ use App\Models\User;
 class BenefitController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
+     * @OA\Get(
+     *     path="/api/filtros",
+     *     summary="Obtener una lista de filtros",
+     *     tags={"Beneficios"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista de beneficios",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id_programa", type="integer", description="ID del programa"),
+     *                 @OA\Property(property="tramite", type="string", description="Trámite del beneficio"),
+     *                 @OA\Property(property="min", type="integer", description="Monto mínimo del beneficio"),
+     *                 @OA\Property(property="max", type="integer", description="Monto máximo del beneficio"),
+     *                 @OA\Property(property="ficha_id", type="integer", description="ID de la ficha del beneficio"),
+     *             ),
+     *         ),
+     *     ),
+     * )
+     **/
     public function index()
     {
         $benefits = Benefit::all()->map(function ($benefit) {
@@ -27,14 +46,49 @@ class BenefitController extends Controller
 
         return response()->json([
             'code' => 200,
-            'status' => true,
+            'success' => true,
             'data' => $benefits,
         ]);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/beneficios-validos",
+     *     summary="Obtener beneficios válidos",
+     *     tags={"Beneficios"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Beneficios válidos",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="year", type="string", description="Año de los beneficios"),
+     *                 @OA\Property(property="num", type="integer", description="Número de beneficios válidos"),
+     *                 @OA\Property(property="beneficios", type="array", description="Lista de beneficios válidos", @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(property="id_programa", type="integer", description="ID del programa"),
+     *                     @OA\Property(property="monto", type="integer", description="Monto del beneficio"),
+     *                     @OA\Property(property="fecha_recepcion", type="string", format="date", description="Fecha de recepción del beneficio"),
+     *                     @OA\Property(property="fecha", type="string", format="date", description="Fecha del beneficio"),
+     *                     @OA\Property(property="ano", type="string", description="Año del beneficio"),
+     *                     @OA\Property(property="view", type="boolean", description="Vista del beneficio"),
+     *                     @OA\Property(property="ficha", type="object", description="Ficha del beneficio", 
+     *                         @OA\Property(property="id", type="integer", description="ID de la ficha"),
+     *                         @OA\Property(property="nombre", type="string", description="Nombre de la ficha"),
+     *                         @OA\Property(property="id_programa", type="integer", description="ID del programa de la ficha"),
+     *                         @OA\Property(property="url", type="string", description="URL de la ficha"),
+     *                         @OA\Property(property="categoria", type="string", description="Categoría de la ficha"),
+     *                         @OA\Property(property="descripcion", type="string", description="Descripción de la ficha"),
+     *                     ),
+     *                 )),
+     *             ),
+     *         ),
+     *     ),
+     * )
+     */
     public function validBenefits()
     {
-
         $benefitsAssigned = BenefitUser::all()->map(function ($benefit) {
             $min = $benefit->benefit->min_amount;
             $max = $benefit->benefit->max_amount;
@@ -76,6 +130,7 @@ class BenefitController extends Controller
             'data' => $byYear,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

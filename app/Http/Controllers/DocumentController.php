@@ -9,7 +9,27 @@ use App\Http\Requests\UpdateDocumentRequest;
 class DocumentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/fichas",
+     *     summary="Obtener una lista de fichas",
+     *     tags={"Fichas"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Lista de fichas",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer", description="ID de la ficha"),
+     *                 @OA\Property(property="nombre", type="string", description="Nombre de la ficha"),
+     *                 @OA\Property(property="id_programa", type="integer", description="ID del programa relacionado"),
+     *                 @OA\Property(property="url", type="string", description="URL del documento"),
+     *                 @OA\Property(property="categoria", type="string", description="Categoría de la ficha"),
+     *                 @OA\Property(property="descripcion", type="string", description="Descripción de la ficha"),
+     *             ),
+     *         ),
+     *     ),
+     * )
      */
     public function index()
     {
@@ -26,10 +46,11 @@ class DocumentController extends Controller
 
         return response()->json([
             'code' => 200,
-            'status' => true,
+            'success' => true,
             'data' => $documents,
         ]);
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $user = User::factory()->create();
         $benefits = Benefit::all();
 
-        for ($i = 0; $i < 10000; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $user->benefits()->attach(
                 $benefits->random()->id,
                 [
